@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>AI Study Assistant</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        textarea {
+            width: 90%;
+            height: 120px;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        button {
+            margin: 7px;
+            padding: 11px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #333;
+            color: white;
+            cursor: pointer;
+        }
+
+        .topics button {
+            background: #eeeeee;
+            color: #333;
+        }
+
+        #answer {
+            margin-top: 20px;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        #quizQuestion {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #quizOptions button {
+            display: block;
+            width: 90%;
+            margin: 8px auto;
+        }
+
+        #quizResult {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .next {
+            background: #555;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+    <h1>🤖 AI Study Assistant</h1>
+
+    <p>Learn your BCA subjects with AI 📚</p>
+
+
+    <!-- TOPIC BUTTONS -->
+
+    <div class="topics">
+
+        <button onclick="askTopic('computer')">
+            Computer
+        </button>
+
+        <button onclick="askTopic('ram')">
+            RAM
+        </button>
+
+        <button onclick="askTopic('cpu')">
+            CPU
+        </button>
+
+        <button onclick="askTopic('software')">
+            Software
+        </button>
+
+        <button onclick="askTopic('rom')">
+            ROM
+        </button>
+
+        <button onclick="askTopic('operating system')">
+            Operating System
+        </button>
+
+    </div>
+
+
+    <br>
+
+
+    <!-- QUESTION BOX -->
+
+    <textarea
+        id="question"
+        placeholder="Enter your question here...">
+    </textarea>
+
+
+    <br>
+
+
+    <button onclick="askAI()">
+        🤖 Ask AI
+    </button>
+
+
+    <!-- AI ANSWER -->
+
+    <p id="answer"></p>
+
+
+    <hr>
+
+
+    <!-- QUIZ -->
+
+    <h2>📝 Quick BCA Quiz</h2>
+
+    <p id="quizQuestion"></p>
+
+    <div id="quizOptions"></div>
+
+    <p id="quizResult"></p>
+
+    <button class="next" onclick="newQuestion()">
+        🔄 Next Question
+    </button>
+
+
+</div>
+
+
+<script>
+
+
+// ===============================
+// AI STUDY ASSISTANT
+// ===============================
+
+
+function askTopic(topic) {
+
+    document.getElementById("question").value =
+        "What is " + topic + "?";
+
+    askAI();
+
+}
+
+
+function askAI() {
+
+    let question =
+        document.getElementById("question").value
+        .toLowerCase()
+        .trim();
+
+    let answer = "";
+
+
+    if (question.includes("computer")) {
+
+        answer =
+        "A computer is an electronic device that accepts data, processes it, stores it, and produces useful information. 💻";
+
+    }
+
+
+    else if (question.includes("ram")) {
+
+        answer =
+        "RAM stands for Random Access Memory. It is temporary memory used by the computer to store data and programs currently being used. 🧠";
+
+    }
+
+
+    else if (question.includes("cpu")) {
+
+        answer =
+        "CPU stands for Central Processing Unit. It processes instructions and performs calculations. It is often called the brain of the computer. ⚙️";
+
+    }
+
+
+    else if (question.includes("software")) {
+
+        answer =
+        "Software is a set of programs or instructions that tells a computer what to do. 💻";
+
+    }
+
+
+    else if (question.includes("rom")) {
+
+        answer =
+        "ROM stands for Read Only Memory. It is non-volatile memory that keeps its data even when the power is turned off. 💾";
+
+    }
+
+
+    else if (
+        question.includes("operating system") ||
+        question.includes(" os ")
+    ) {
+
+        answer =
+        "An Operating System manages the computer's hardware and software. Examples include Windows, Linux, Android and macOS. 🖥️";
+
+    }
+
+
+    else {
+
+        answer =
+        "I don't know this topic yet. Try asking about Computer, RAM, CPU, Software, ROM or Operating System. 🤖";
+
+    }
+
+
+    document.getElementById("answer").innerText = answer;
+
+}
+
+
+
+// ===============================
+// BCA QUIZ
+// ===============================
+
+
+let quizQuestions = [
+
+    {
+
+        question: "What does CPU stand for?",
+
+        options: [
+
+            "Central Processing Unit",
+
+            "Computer Personal Unit",
+
+            "Central Program Utility",
+
+            "Computer Processing Utility"
+
+        ],
+
+        correct: 0
+
+    },
+
+
+    {
+
+        question: "What is the full form of RAM?",
+
+        options: [
+
+            "Read Access Memory",
+
+            "Random Access Memory",
+
+            "Rapid Access Machine",
+
+            "Random Application Memory"
+
+        ],
+
+        correct: 1
+
+    },
+
+
+    {
+
+        question: "What is the full form of ROM?",
+
+        options: [
+
+            "Random Only Memory",
+
+            "Read Only Memory",
+
+            "Read Open Memory",
+
+            "Random Operating Memory"
+
+        ],
+
+        correct: 1
+
+    },
+
+
+    {
+
+        question: "Which is the brain of the computer?",
+
+        options: [
+
+            "Monitor",
+
+            "Keyboard",
+
+            "CPU",
+
+            "Mouse"
+
+        ],
+
+        correct: 2
+
+    },
+
+
+    {
+
+        question: "Which of these is an operating system?",
+
+        options: [
+
+            "Windows",
+
+            "Keyboard",
+
+            "CPU",
+
+            "RAM"
+
+        ],
+
+        correct: 0
+
+    }
+
+];
+
+
+let currentQuestion = 0;
+
+
+function showQuestion() {
+
+    let q = quizQuestions[currentQuestion];
+
+
+    document.getElementById("quizQuestion").innerText =
+        q.question;
+
+
+    let html = "";
+
+
+    for (let i = 0; i < q.options.length; i++) {
+
+        html +=
+        '<button onclick="checkQuizAnswer(' + i + ')">' +
+        q.options[i] +
+        '</button>';
+
+    }
+
+
+    document.getElementById("quizOptions").innerHTML =
+        html;
+
+
+    document.getElementById("quizResult").innerText = "";
+
+}
+
+
+function checkQuizAnswer(answer) {
+
+    if (
+        answer ===
+        quizQuestions[currentQuestion].correct
+    ) {
+
+        document.getElementById("quizResult").innerText =
+            "✅ Correct! Well done! 🎉";
+
+    }
+
+    else {
+
+        document.getElementById("quizResult").innerText =
+            "❌ Incorrect. Try again!";
+
+    }
+
+}
+
+
+function newQuestion() {
+
+    currentQuestion++;
+
+
+    if (
+        currentQuestion >= quizQuestions.length
+    ) {
+
+        currentQuestion = 0;
+
+    }
+
+
+    showQuestion();
+
+}
+
+
+// Show first question automatically
+
+showQuestion();
+
+
+</script>
+
+
+</body>
+
+</html>
